@@ -6,8 +6,8 @@ const rootPkg = require('../../package.json');
 const JEST_ENV = ['jsdom', 'node'];
 
 module.exports = class JestGenerator extends yeoman.Base {
-  constructor() {
-    super(...arguments);
+  constructor(args, opts) {
+    super(args, opts);
 
     this.option('testEnvironment', {
       type: String,
