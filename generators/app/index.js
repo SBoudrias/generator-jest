@@ -22,7 +22,7 @@ module.exports = class JestGenerator extends yeoman.Base {
       message: 'What environment do you want to use',
       choices: JEST_ENV,
       default: this.options.testEnvironment,
-      when: !JEST_ENV.includes(this.options.testEnvironment)
+      when: JEST_ENV.indexOf(this.options.testEnvironment) === -1
     }];
 
     return this.prompt(prompts).then(function (props) {
