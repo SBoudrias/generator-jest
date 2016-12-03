@@ -11,7 +11,7 @@ module.exports = class JestGenerator extends yeoman.Base {
 
     this.option('testEnvironment', {
       type: String,
-      description: 'Test environment (jsdom or node)'
+      desc: 'Test environment (jsdom or node)'
     });
   }
 
