@@ -1,11 +1,11 @@
 'use strict';
-const yeoman = require('yeoman-generator');
+const Generator = require('yeoman-generator');
 const extend = require('deep-extend');
 const rootPkg = require('../../package.json');
 
 const JEST_ENV = ['jsdom', 'node'];
 
-module.exports = class JestGenerator extends yeoman.Base {
+module.exports = class JestGenerator extends Generator {
   constructor(args, opts) {
     super(args, opts);
 

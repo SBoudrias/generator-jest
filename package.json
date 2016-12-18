@@ -19,7 +19,7 @@
   ],
   "dependencies": {
     "deep-extend": "^0.4.1",
-    "yeoman-generator": "^0.24.1"
+    "yeoman-generator": "^1.0.0"
   },
   "devDependencies": {
     "coveralls": "^2.11.15",
