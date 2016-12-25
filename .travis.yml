@@ -3,3 +3,5 @@ node_js:
   - node
   - v6
   - v4
+cache:
+  yarn: true
