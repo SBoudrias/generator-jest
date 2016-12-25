@@ -37,10 +37,16 @@
       "mocha": true
     }
   },
+  "jest": {
+    "collectCoverage": true,
+    "coverageDirectory": "coverage"
+  },
   "repository": "SBoudrias/generator-jest",
   "scripts": {
     "prepublish": "nsp check",
-    "test": "eslint **/*.js --fix && jest"
+    "pretest": "eslint **/*.js --fix",
+    "test": "jest",
+    "posttest": "cat ./coverage/lcov.info | coveralls"
   },
   "license": "MIT"
 }

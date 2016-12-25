@@ -31,7 +31,8 @@ Then call it from your generator.
 
 ```js
 this.composeWith(require.resolve('generator-jest'), {
-  testEnvironment: 'jsdom' // (optional) pass one of jsdom or node
+  testEnvironment: 'jsdom', // (optional) pass one of jsdom or node
+  coveralls: true // (optional) send coverage reports to coveralls
 });
 ```
 

@@ -11,7 +11,6 @@ describe('generator-jest:app', function () {
   it('generates for jsdom', function () {
     return helpers.run(jestGenerator)
       .withPrompts({testEnvironment: 'jsdom'})
-      .toPromise()
       .then(function () {
         assert.jsonFileContent('package.json', {
           scripts: {
@@ -28,7 +27,6 @@ describe('generator-jest:app', function () {
   it('generates for node', function () {
     return helpers.run(jestGenerator)
       .withPrompts({testEnvironment: 'node'})
-      .toPromise()
       .then(function () {
         assert.jsonFileContent('package.json', {
           scripts: {
@@ -48,7 +46,6 @@ describe('generator-jest:app', function () {
   it('allows selecting environment through options', function () {
     return helpers.run(jestGenerator)
       .withOptions({testEnvironment: 'node'})
-      .toPromise()
       .then(function () {
         assert.jsonFileContent('package.json', {
           jest: {
@@ -68,7 +65,6 @@ describe('generator-jest:app', function () {
           }
         }));
       })
-      .toPromise()
       .then(function () {
         assert.jsonFileContent('package.json', {
           scripts: {
@@ -88,11 +84,34 @@ describe('generator-jest:app', function () {
           }
         }));
       })
-      .toPromise()
       .then(function () {
         assert.jsonFileContent('package.json', {
           scripts: {
             test: 'eslint && jest --coverage'
+          }
+        });
+      });
+  });
+
+  it('send coverage reports to coveralls', function () {
+    return helpers.run(jestGenerator)
+      .withPrompts({coveralls: true})
+      .then(function () {
+        assert.jsonFileContent('package.json', {
+          scripts: {
+            posttest: 'cat ./coverage/lcov.info | coveralls'
+          }
+        });
+      });
+  });
+
+  it('skip coverage reports to coveralls', function () {
+    return helpers.run(jestGenerator)
+      .withOptions({coveralls: false})
+      .then(function () {
+        assert.noJsonFileContent('package.json', {
+          scripts: {
+            posttest: 'cat ./coverage/lcov.info | coveralls'
           }
         });
       });

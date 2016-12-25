@@ -13,6 +13,11 @@ module.exports = class JestGenerator extends Generator {
       type: String,
       desc: 'Test environment (jsdom or node)'
     });
+
+    this.option('coveralls', {
+      type: Boolean,
+      desc: 'Send coverage reports to coveralls'
+    });
   }
 
   prompting() {
@@ -23,6 +28,11 @@ module.exports = class JestGenerator extends Generator {
       choices: JEST_ENV,
       default: this.options.testEnvironment,
       when: JEST_ENV.indexOf(this.options.testEnvironment) === -1
+    }, {
+      type: 'confirm',
+      name: 'coveralls',
+      message: 'Send coverage reports to coveralls?',
+      when: this.options.coveralls === undefined
     }];
 
     return this.prompt(prompts).then(function (props) {
@@ -37,16 +47,25 @@ module.exports = class JestGenerator extends Generator {
       devDependencies: {
         jest: rootPkg.devDependencies.jest,
         'jest-cli': rootPkg.devDependencies['jest-cli']
+      },
+      jest: {
+        collectCoverage: true,
+        coverageDirectory: 'coverage'
       }
     });
 
-    // TODO: Add coverage support
     // Add jest to the npm test script in a non-destructive way
     var testScripts = pkg.scripts.test || '';
     testScripts = testScripts.split('&&').map(str => str.trim()).filter(Boolean);
     if (!testScripts.find(script => script.startsWith('jest'))) {
       testScripts.push('jest');
       pkg.scripts.test = testScripts.join(' && ');
+    }
+
+    // Send coverage reports to coveralls
+    if (this.props.coveralls) {
+      pkg.scripts.posttest = 'cat ./coverage/lcov.info | coveralls';
+      pkg.devDependencies.coveralls = rootPkg.devDependencies.coveralls;
     }
 
     if (this.props.testEnvironment !== 'jsdom') {
