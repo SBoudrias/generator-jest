@@ -30,9 +30,9 @@ npm install --save generator-jest
 Then call it from your generator.
 
 ```js
-this.composeWith('jest', {
+this.composeWith(require.resolve('generator-jest'), {
   testEnvironment: 'jsdom' // (optional) pass one of jsdom or node
-}, {local: require.resolve('generator-jest')});
+});
 ```
 
 ## License
