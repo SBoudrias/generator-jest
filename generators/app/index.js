@@ -5,7 +5,7 @@ const rootPkg = require('../../package.json');
 
 const JEST_ENV = ['jsdom', 'node'];
 
-module.exports = class JestGenerator extends Generator {
+module.exports = class extends Generator {
   constructor(args, opts) {
     super(args, opts);
 

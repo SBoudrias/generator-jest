@@ -19,6 +19,8 @@
   ],
   "dependencies": {
     "deep-extend": "^0.4.1",
+    "lodash.camelcase": "^4.3.0",
+    "lodash.upperfirst": "^4.3.1",
     "yeoman-generator": "^1.0.0"
   },
   "devDependencies": {
