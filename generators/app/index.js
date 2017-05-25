@@ -36,7 +36,10 @@ module.exports = class extends Generator {
     }];
 
     return this.prompt(prompts).then(function (props) {
-      this.props = extend({}, this.options, props);
+      this.props = Object.assign({
+        testEnvironment: this.options.testEnvironment,
+        coveralls: this.options.coveralls
+      }, props);
     }.bind(this));
   }
 
