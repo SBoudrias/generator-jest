@@ -1,6 +1,6 @@
 {
   "name": "generator-jest",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Add jest support to any projects",
   "author": {
     "name": "Simon Boudrias",
