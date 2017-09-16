@@ -7,11 +7,12 @@ const rootPkg = require('../package.json');
 
 const jestGenerator = path.join(__dirname, '../generators/app');
 
-describe('generator-jest:app', function () {
-  it('generates for jsdom', function () {
-    return helpers.run(jestGenerator)
-      .withPrompts({testEnvironment: 'jsdom'})
-      .then(function () {
+describe('generator-jest:app', () => {
+  it('generates for jsdom', () => {
+    return helpers
+      .run(jestGenerator)
+      .withPrompts({ testEnvironment: 'jsdom' })
+      .then(() => {
         assert.jsonFileContent('package.json', {
           scripts: {
             test: 'jest'
@@ -24,10 +25,11 @@ describe('generator-jest:app', function () {
       });
   });
 
-  it('generates for node', function () {
-    return helpers.run(jestGenerator)
-      .withPrompts({testEnvironment: 'node'})
-      .then(function () {
+  it('generates for node', () => {
+    return helpers
+      .run(jestGenerator)
+      .withPrompts({ testEnvironment: 'node' })
+      .then(() => {
         assert.jsonFileContent('package.json', {
           scripts: {
             test: 'jest'
@@ -43,10 +45,11 @@ describe('generator-jest:app', function () {
       });
   });
 
-  it('allows selecting environment through options', function () {
-    return helpers.run(jestGenerator)
-      .withOptions({testEnvironment: 'node'})
-      .then(function () {
+  it('allows selecting environment through options', () => {
+    return helpers
+      .run(jestGenerator)
+      .withOptions({ testEnvironment: 'node' })
+      .then(() => {
         assert.jsonFileContent('package.json', {
           jest: {
             testEnvironment: 'node'
@@ -55,17 +58,21 @@ describe('generator-jest:app', function () {
       });
   });
 
-  it('is non-destructive of current scripts', function () {
-    return helpers.run(jestGenerator)
-      .withPrompts({testEnvironment: 'node'})
-      .inTmpDir(function () {
-        fs.writeFileSync('package.json', JSON.stringify({
-          scripts: {
-            test: 'eslint'
-          }
-        }));
+  it('is non-destructive of current scripts', () => {
+    return helpers
+      .run(jestGenerator)
+      .withPrompts({ testEnvironment: 'node' })
+      .inTmpDir(() => {
+        fs.writeFileSync(
+          'package.json',
+          JSON.stringify({
+            scripts: {
+              test: 'eslint'
+            }
+          })
+        );
       })
-      .then(function () {
+      .then(() => {
         assert.jsonFileContent('package.json', {
           scripts: {
             test: 'eslint && jest'
@@ -74,17 +81,21 @@ describe('generator-jest:app', function () {
       });
   });
 
-  it('does not duplicates pre-existing jest commands', function () {
-    return helpers.run(jestGenerator)
-      .withPrompts({testEnvironment: 'node'})
-      .inTmpDir(function () {
-        fs.writeFileSync('package.json', JSON.stringify({
-          scripts: {
-            test: 'eslint && jest --coverage'
-          }
-        }));
+  it('does not duplicates pre-existing jest commands', () => {
+    return helpers
+      .run(jestGenerator)
+      .withPrompts({ testEnvironment: 'node' })
+      .inTmpDir(() => {
+        fs.writeFileSync(
+          'package.json',
+          JSON.stringify({
+            scripts: {
+              test: 'eslint && jest --coverage'
+            }
+          })
+        );
       })
-      .then(function () {
+      .then(() => {
         assert.jsonFileContent('package.json', {
           scripts: {
             test: 'eslint && jest --coverage'
@@ -93,10 +104,11 @@ describe('generator-jest:app', function () {
       });
   });
 
-  it('send coverage reports to coveralls', function () {
-    return helpers.run(jestGenerator)
-      .withPrompts({coveralls: true})
-      .then(function () {
+  it('send coverage reports to coveralls', () => {
+    return helpers
+      .run(jestGenerator)
+      .withPrompts({ coveralls: true })
+      .then(() => {
         assert.jsonFileContent('package.json', {
           scripts: {
             posttest: 'cat ./coverage/lcov.info | coveralls'
@@ -105,10 +117,11 @@ describe('generator-jest:app', function () {
       });
   });
 
-  it('skip coverage reports to coveralls', function () {
-    return helpers.run(jestGenerator)
-      .withOptions({coveralls: false})
-      .then(function () {
+  it('skip coverage reports to coveralls', () => {
+    return helpers
+      .run(jestGenerator)
+      .withOptions({ coveralls: false })
+      .then(() => {
         assert.noJsonFileContent('package.json', {
           scripts: {
             posttest: 'cat ./coverage/lcov.info | coveralls'

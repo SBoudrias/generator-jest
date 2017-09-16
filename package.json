@@ -17,38 +17,65 @@
     "test",
     "yeoman-generator"
   ],
+  "devDependencies": {
+    "coveralls": "^2.13.1",
+    "eslint": "^4.1.0",
+    "eslint-config-xo-space": "^0.16.0",
+    "eslint-config-prettier": "^2.4.0",
+    "eslint-plugin-prettier": "^2.2.0",
+    "husky": "^0.14.3",
+    "jest": "^21.0.0",
+    "jest-cli": "^21.0.0",
+    "lint-staged": "^4.2.1",
+    "nsp": "^2.6.3",
+    "prettier": "^1.7.0",
+    "yeoman-assert": "^3.0.0",
+    "yeoman-test": "^1.0.0"
+  },
   "dependencies": {
     "deep-extend": "^0.5.0",
     "lodash.camelcase": "^4.3.0",
     "lodash.upperfirst": "^4.3.1",
     "yeoman-generator": "^2.0.0"
   },
-  "devDependencies": {
-    "coveralls": "^2.13.1",
-    "eslint": "^4.1.0",
-    "eslint-config-xo-space": "^0.16.0",
-    "jest": "^21.0.0",
-    "jest-cli": "^21.0.0",
-    "nsp": "^2.6.3",
-    "yeoman-assert": "^3.0.0",
-    "yeoman-test": "^1.0.0"
-  },
   "eslintConfig": {
-    "extends": "xo-space",
+    "extends": [
+      "xo-space",
+      "prettier"
+    ],
     "env": {
-      "mocha": true
-    }
+      "mocha": true,
+      "jest": true,
+      "node": true
+    },
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "singleQuote": true,
+          "printWidth": 90
+        }
+      ]
+    },
+    "plugins": [
+      "prettier"
+    ]
   },
   "jest": {
-    "collectCoverage": true,
-    "coverageDirectory": "coverage"
+    "testEnvironment": "node"
   },
   "repository": "SBoudrias/generator-jest",
   "scripts": {
     "prepublish": "nsp check",
-    "pretest": "eslint **/*.js --fix",
+    "pretest": "eslint .",
     "test": "jest",
-    "posttest": "cat ./coverage/lcov.info | coveralls"
+    "precommit": "lint-staged"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  }
 }

@@ -30,16 +30,16 @@ module.exports = class extends Generator {
     }
 
     var dirname = path.dirname(this.options.filepath);
-    var destinationPath = path.join(dirname, '__tests__', componentName + '.test' + extname);
+    var destinationPath = path.join(
+      dirname,
+      '__tests__',
+      componentName + '.test' + extname
+    );
     destinationPath = this.destinationPath(destinationPath);
 
-    this.fs.copyTpl(
-      this.templatePath('test.js.tpl'),
-      destinationPath,
-      {
-        filepath: '../' + path.basename(this.options.filepath),
-        name: componentName
-      }
-    );
+    this.fs.copyTpl(this.templatePath('test.js.tpl'), destinationPath, {
+      filepath: '../' + path.basename(this.options.filepath),
+      name: componentName
+    });
   }
 };
