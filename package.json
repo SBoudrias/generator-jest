@@ -20,7 +20,7 @@
   "devDependencies": {
     "coveralls": "^2.13.1",
     "eslint": "^4.1.0",
-    "eslint-config-xo-space": "^0.16.0",
+    "eslint-config-xo-space": "^0.17.0",
     "eslint-config-prettier": "^2.4.0",
     "eslint-plugin-prettier": "^2.2.0",
     "husky": "^0.14.3",
