@@ -28,7 +28,7 @@ describe('generator-jest:app', () => {
   it('generates for node', () => {
     return helpers
       .run(jestGenerator)
-      .withPrompts({ testEnvironment: 'node' })
+      .withPrompts({ testEnvironment: 'node', coveralls: false })
       .then(() => {
         assert.jsonFileContent('package.json', {
           scripts: {
@@ -61,7 +61,7 @@ describe('generator-jest:app', () => {
   it('is non-destructive of current scripts', () => {
     return helpers
       .run(jestGenerator)
-      .withPrompts({ testEnvironment: 'node' })
+      .withPrompts({ testEnvironment: 'node', coveralls: false })
       .inTmpDir(() => {
         fs.writeFileSync(
           'package.json',
@@ -125,6 +125,32 @@ describe('generator-jest:app', () => {
         assert.noJsonFileContent('package.json', {
           scripts: {
             posttest: 'cat ./coverage/lcov.info | coveralls'
+          }
+        });
+      });
+  });
+
+  it('adds --coverage parameter for non-jsdom environments', () => {
+    return helpers
+      .run(jestGenerator)
+      .withPrompts({ coveralls: true, testEnvironment: 'node' })
+      .then(() => {
+        assert.jsonFileContent('package.json', {
+          scripts: {
+            test: 'jest --coverage'
+          }
+        });
+      });
+  });
+
+  it('doesnt add --coverage parameter for non-jsdom environments', () => {
+    return helpers
+      .run(jestGenerator)
+      .withPrompts({ coveralls: false, testEnvironment: 'node' })
+      .then(() => {
+        assert.noJsonFileContent('package.json', {
+          scripts: {
+            test: 'jest --coverage'
           }
         });
       });

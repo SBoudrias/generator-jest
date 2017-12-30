@@ -70,7 +70,11 @@ module.exports = class extends Generator {
       .map(str => str.trim())
       .filter(Boolean);
     if (!testScripts.find(script => script.startsWith('jest'))) {
-      testScripts.push('jest');
+      testScripts.push(
+        this.props.coveralls && this.props.testEnvironment !== 'jsdom'
+          ? 'jest --coverage'
+          : 'jest'
+      );
       pkg.scripts.test = testScripts.join(' && ');
     }
 
