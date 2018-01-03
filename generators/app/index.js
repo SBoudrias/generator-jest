@@ -56,10 +56,6 @@ module.exports = class extends Generator {
       devDependencies: {
         jest: rootPkg.devDependencies.jest,
         'jest-cli': rootPkg.devDependencies['jest-cli']
-      },
-      jest: {
-        collectCoverage: true,
-        coverageDirectory: 'coverage'
       }
     });
 
@@ -70,11 +66,7 @@ module.exports = class extends Generator {
       .map(str => str.trim())
       .filter(Boolean);
     if (!testScripts.find(script => script.startsWith('jest'))) {
-      testScripts.push(
-        this.props.coveralls && this.props.testEnvironment !== 'jsdom'
-          ? 'jest --coverage'
-          : 'jest'
-      );
+      testScripts.push(this.props.coveralls ? 'jest --coverage' : 'jest');
       pkg.scripts.test = testScripts.join(' && ');
     }
 
@@ -85,8 +77,9 @@ module.exports = class extends Generator {
     }
 
     if (this.props.testEnvironment !== 'jsdom') {
-      pkg.jest = {};
-      pkg.jest.testEnvironment = this.props.testEnvironment;
+      pkg.jest = {
+        testEnvironment: this.props.testEnvironment
+      };
     }
 
     this.fs.writeJSON(this.destinationPath('package.json'), pkg);

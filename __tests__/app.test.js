@@ -15,7 +15,7 @@ describe('generator-jest:app', () => {
       .then(() => {
         assert.jsonFileContent('package.json', {
           scripts: {
-            test: 'jest'
+            test: 'jest --coverage'
           },
           devDependencies: {
             jest: rootPkg.devDependencies.jest,
@@ -28,11 +28,11 @@ describe('generator-jest:app', () => {
   it('generates for node', () => {
     return helpers
       .run(jestGenerator)
-      .withPrompts({ testEnvironment: 'node', coveralls: false })
+      .withPrompts({ testEnvironment: 'node' })
       .then(() => {
         assert.jsonFileContent('package.json', {
           scripts: {
-            test: 'jest'
+            test: 'jest --coverage'
           },
           devDependencies: {
             jest: rootPkg.devDependencies.jest,
@@ -61,7 +61,7 @@ describe('generator-jest:app', () => {
   it('is non-destructive of current scripts', () => {
     return helpers
       .run(jestGenerator)
-      .withPrompts({ testEnvironment: 'node', coveralls: false })
+      .withPrompts({ testEnvironment: 'node' })
       .inTmpDir(() => {
         fs.writeFileSync(
           'package.json',
@@ -75,7 +75,7 @@ describe('generator-jest:app', () => {
       .then(() => {
         assert.jsonFileContent('package.json', {
           scripts: {
-            test: 'eslint && jest'
+            test: 'eslint && jest --coverage'
           }
         });
       });
@@ -122,35 +122,14 @@ describe('generator-jest:app', () => {
       .run(jestGenerator)
       .withOptions({ coveralls: false })
       .then(() => {
+        assert.jsonFileContent('package.json', {
+          scripts: {
+            test: 'jest'
+          }
+        });
         assert.noJsonFileContent('package.json', {
           scripts: {
             posttest: 'cat ./coverage/lcov.info | coveralls'
-          }
-        });
-      });
-  });
-
-  it('adds --coverage parameter for non-jsdom environments', () => {
-    return helpers
-      .run(jestGenerator)
-      .withPrompts({ coveralls: true, testEnvironment: 'node' })
-      .then(() => {
-        assert.jsonFileContent('package.json', {
-          scripts: {
-            test: 'jest --coverage'
-          }
-        });
-      });
-  });
-
-  it('doesnt add --coverage parameter for non-jsdom environments', () => {
-    return helpers
-      .run(jestGenerator)
-      .withPrompts({ coveralls: false, testEnvironment: 'node' })
-      .then(() => {
-        assert.noJsonFileContent('package.json', {
-          scripts: {
-            test: 'jest --coverage'
           }
         });
       });
