@@ -15,7 +15,7 @@ describe('generator-jest:app', () => {
       .then(() => {
         assert.jsonFileContent('package.json', {
           scripts: {
-            test: 'jest'
+            test: 'jest --coverage'
           },
           devDependencies: {
             jest: rootPkg.devDependencies.jest,
@@ -32,7 +32,7 @@ describe('generator-jest:app', () => {
       .then(() => {
         assert.jsonFileContent('package.json', {
           scripts: {
-            test: 'jest'
+            test: 'jest --coverage'
           },
           devDependencies: {
             jest: rootPkg.devDependencies.jest,
@@ -75,7 +75,7 @@ describe('generator-jest:app', () => {
       .then(() => {
         assert.jsonFileContent('package.json', {
           scripts: {
-            test: 'eslint && jest'
+            test: 'eslint && jest --coverage'
           }
         });
       });
@@ -122,6 +122,11 @@ describe('generator-jest:app', () => {
       .run(jestGenerator)
       .withOptions({ coveralls: false })
       .then(() => {
+        assert.jsonFileContent('package.json', {
+          scripts: {
+            test: 'jest'
+          }
+        });
         assert.noJsonFileContent('package.json', {
           scripts: {
             posttest: 'cat ./coverage/lcov.info | coveralls'
