@@ -28,7 +28,7 @@
     "lint-staged": "^10.0.3",
     "prettier": "^1.18.2",
     "yeoman-assert": "^3.1.1",
-    "yeoman-test": "^2.0.0"
+    "yeoman-test": "^2.4.1"
   },
   "dependencies": {
     "deep-extend": "^0.6.0",
