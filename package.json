@@ -25,7 +25,7 @@
     "eslint-plugin-prettier": "^3.0.0",
     "husky": "^4.0.2",
     "jest": "^24.8.0",
-    "lint-staged": "^10.0.3",
+    "lint-staged": "^10.1.4",
     "prettier": "^1.18.2",
     "yeoman-assert": "^3.1.1",
     "yeoman-test": "^2.0.0"
