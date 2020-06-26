@@ -61,7 +61,8 @@
     ]
   },
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "collectCoverage": true
   },
   "repository": "SBoudrias/generator-jest",
   "scripts": {
