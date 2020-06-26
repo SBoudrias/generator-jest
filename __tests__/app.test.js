@@ -15,12 +15,12 @@ describe('generator-jest:app', () => {
       .then(() => {
         assert.jsonFileContent('package.json', {
           scripts: {
-            test: 'jest --coverage'
+            test: 'jest --coverage',
           },
           devDependencies: {
             jest: rootPkg.devDependencies.jest,
-            'jest-cli': rootPkg.devDependencies['jest-cli']
-          }
+            'jest-cli': rootPkg.devDependencies['jest-cli'],
+          },
         });
       });
   });
@@ -32,15 +32,15 @@ describe('generator-jest:app', () => {
       .then(() => {
         assert.jsonFileContent('package.json', {
           scripts: {
-            test: 'jest --coverage'
+            test: 'jest --coverage',
           },
           devDependencies: {
             jest: rootPkg.devDependencies.jest,
-            'jest-cli': rootPkg.devDependencies['jest-cli']
+            'jest-cli': rootPkg.devDependencies['jest-cli'],
           },
           jest: {
-            testEnvironment: 'node'
-          }
+            testEnvironment: 'node',
+          },
         });
       });
   });
@@ -52,8 +52,8 @@ describe('generator-jest:app', () => {
       .then(() => {
         assert.jsonFileContent('package.json', {
           jest: {
-            testEnvironment: 'node'
-          }
+            testEnvironment: 'node',
+          },
         });
       });
   });
@@ -67,16 +67,16 @@ describe('generator-jest:app', () => {
           'package.json',
           JSON.stringify({
             scripts: {
-              test: 'eslint'
-            }
+              test: 'eslint',
+            },
           })
         );
       })
       .then(() => {
         assert.jsonFileContent('package.json', {
           scripts: {
-            test: 'eslint && jest --coverage'
-          }
+            test: 'eslint && jest --coverage',
+          },
         });
       });
   });
@@ -90,16 +90,16 @@ describe('generator-jest:app', () => {
           'package.json',
           JSON.stringify({
             scripts: {
-              test: 'eslint && jest --coverage'
-            }
+              test: 'eslint && jest --coverage',
+            },
           })
         );
       })
       .then(() => {
         assert.jsonFileContent('package.json', {
           scripts: {
-            test: 'eslint && jest --coverage'
-          }
+            test: 'eslint && jest --coverage',
+          },
         });
       });
   });
@@ -111,8 +111,8 @@ describe('generator-jest:app', () => {
       .then(() => {
         assert.jsonFileContent('package.json', {
           scripts: {
-            posttest: 'cat ./coverage/lcov.info | coveralls'
-          }
+            posttest: 'cat ./coverage/lcov.info | coveralls',
+          },
         });
       });
   });
@@ -124,13 +124,13 @@ describe('generator-jest:app', () => {
       .then(() => {
         assert.jsonFileContent('package.json', {
           scripts: {
-            test: 'jest'
-          }
+            test: 'jest',
+          },
         });
         assert.noJsonFileContent('package.json', {
           scripts: {
-            posttest: 'cat ./coverage/lcov.info | coveralls'
-          }
+            posttest: 'cat ./coverage/lcov.info | coveralls',
+          },
         });
       });
   });
