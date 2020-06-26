@@ -11,12 +11,12 @@ module.exports = class extends Generator {
     this.argument('filepath', {
       type: String,
       desc: 'Path to the file to test',
-      required: true
+      required: true,
     });
 
     this.option('componentName', {
       type: String,
-      desc: 'Name of the component to test'
+      desc: 'Name of the component to test',
     });
   }
 
@@ -39,7 +39,7 @@ module.exports = class extends Generator {
 
     this.fs.copyTpl(this.templatePath('test.js.tpl'), destinationPath, {
       filepath: '../' + path.basename(this.options.filepath),
-      name: componentName
+      name: componentName,
     });
   }
 };
