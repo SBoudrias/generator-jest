@@ -1,4 +1,4 @@
-# generator-jest [![NPM version][npm-image]][npm-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
+# generator-jest [![NPM version][npm-image]][npm-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][codecov-image]][codecov-url]
 
 > Add jest support to any projects
 
@@ -61,5 +61,5 @@ MIT © [Simon Boudrias](https://github.com/SBoudrias)
 [npm-url]: https://npmjs.org/package/generator-jest
 [daviddm-image]: https://david-dm.org/SBoudrias/generator-jest.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/SBoudrias/generator-jest
-[coveralls-image]: https://coveralls.io/repos/SBoudrias/generator-jest/badge.svg
-[coveralls-url]: https://coveralls.io/r/SBoudrias/generator-jest
+[codecov-image]: https://codecov.io/gh/SBoudrias/generator-jest/branch/master/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/SBoudrias/generator-jest
