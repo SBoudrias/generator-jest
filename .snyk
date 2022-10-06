@@ -1,5 +1,5 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.19.0
+version: v1.25.0
 ignore: {}
 # patches apply the minimum changes required to fix a vulnerability
 patch:
@@ -34,3 +34,13 @@ patch:
         patched: '2021-02-26T18:59:59.948Z'
     - snyk > snyk-mvn-plugin > @snyk/cli-interface > @snyk/dep-graph > graphlib > lodash:
         patched: '2021-02-26T18:59:59.948Z'
+    - yeoman-generator > lodash:
+        patched: '2022-10-06T21:57:36.786Z'
+    - yeoman-generator > async > lodash:
+        patched: '2022-10-06T21:57:36.786Z'
+    - yeoman-generator > yeoman-environment > lodash:
+        patched: '2022-10-06T21:57:36.786Z'
+    - yeoman-generator > yeoman-environment > grouped-queue > lodash:
+        patched: '2022-10-06T21:57:36.786Z'
+    - yeoman-generator > yeoman-environment > inquirer > lodash:
+        patched: '2022-10-06T21:57:36.786Z'

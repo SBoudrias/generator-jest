@@ -34,8 +34,8 @@
     "deep-extend": "^0.6.0",
     "lodash.camelcase": "^4.3.0",
     "lodash.upperfirst": "^4.3.1",
-    "snyk": "^1.685.0",
-    "yeoman-generator": "^4.13.0"
+    "yeoman-generator": "^5.0.0",
+    "@snyk/protect": "latest"
   },
   "eslintConfig": {
     "extends": [
@@ -69,7 +69,7 @@
     "pretest": "eslint .",
     "test": "jest",
     "precommit": "lint-staged",
-    "snyk-protect": "snyk protect",
+    "snyk-protect": "snyk-protect",
     "prepare": "npm run snyk-protect"
   },
   "license": "MIT",
